@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+
+  influxdb:
+    image: gianarb/influxdb:0.12.1
+    environment:
+      - constraint:node==backend
+    networks:
+      - influx-tier
+
+  telegraf:
+    build: ./telegraf
+    environment:
+      - constraint:node==db
+    networks:
+      - influx-tier
+      - demo-tier
+
+  chronograf:
+    image: gianarb/chronograf:0.10.0
+    ports:
+      - "10000:10000"
+    volumes:
+      - /opt:/data/
+    environment:
+      - constraint:node==public
+    networks:
+      - demo-tier
+
+  mongo:
+    image: mongo:3.3.5
+    environment:
+      - constraint:node==db
+    networks:
+      - demo-tier
+
+  front:
+    build:
+      context: .
+      dockerfile: front/Dockerfile
+    command: php -S 0.0.0.0:8000 -t /code/
+    environment:
+      - constraint:node==public
+    ports:
+      - "8000:8000"
+    networks:
+      - demo-tier
+
+networks:
+    demo-tier:
