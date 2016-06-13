@@ -1,3 +1,3 @@
 ab -p post_test.txt -T application/json \
-    -c 150 -n 2000000 http://104.131.175.157:8000/entrypoint.php
+    -c 10 -n 10000 http://127.0.0.1:8000/entrypoint.php
 

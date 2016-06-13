@@ -1,0 +1,9 @@
+{
+    "domain": "goole.com",
+    "destination_url": "https://ccccccc.ccccccc.co",
+    "event": "loaded",
+    "videoId": "2463463",
+    "playlistId": "3423",
+    "autoplay": "true",
+    "mute": "false"
+}

@@ -6,15 +6,17 @@ services:
     image: gianarb/influxdb:0.12.1
     environment:
       - constraint:node==backend
+    ports:
+      - "8083:8083"
+      - "8086:8086"
     networks:
-      - influx-tier
+      - demo-tier
 
   telegraf:
     build: ./telegraf
     environment:
       - constraint:node==db
     networks:
-      - influx-tier
       - demo-tier
 
   chronograf:
