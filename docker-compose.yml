@@ -3,7 +3,7 @@ version: '2'
 services:
 
   influxdb:
-    image: gianarb/influxdb:0.12.1
+    image: gianarb/influxdb:0.13.0
     environment:
       - constraint:node==backend
     ports:
@@ -16,6 +16,16 @@ services:
     build: ./telegraf
     environment:
       - constraint:node==db
+    networks:
+      - demo-tier
+
+  kapacitor:
+    image: gianarb/kapacitor:0.13.1
+    volumes:
+        - ./kapacitor/tasks:/var/lib/kapacitor/tasks
+        - ./kapacitor/kapacitor.toml:/etc/kapacitor.toml
+    ports:
+      - "9092:9092"
     networks:
       - demo-tier
 
