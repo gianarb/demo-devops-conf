@@ -1,0 +1,2 @@
+kapacitor define mongo_alert -type stream -tick /var/lib/kapacitor/tasks/mongo_alert.tick -dbrp kapacitor_example.default
+kapacitor record stream -task mongo_alert -duration 20s
