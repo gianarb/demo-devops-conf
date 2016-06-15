@@ -1,8 +1,6 @@
 stream
     |from()
-        .database('get_metr')
-        .retentionPolicy('default')
-        .measurement('mongodb')
+        .measurement('inserts_per_sec')
     |alert()
         .crit(lambda: "inserts_per_sec" > 70)
         .log('/tmp/alerts.log')
