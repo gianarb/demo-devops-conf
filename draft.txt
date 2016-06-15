@@ -1,2 +1,1 @@
-kapacitor define mongo_alert -type stream -tick /var/lib/kapacitor/tasks/mongo_alert.tick -dbrp kapacitor_example.default
-kapacitor record stream -task mongo_alert -duration 20s
+curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
